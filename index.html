@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muslim Daily Planner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-mosque"></i>
+                <h1>Muslim Daily Planner</h1>
+            </div>
+            <button id="theme-toggle" class="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </header>
+
+        <div class="tab-container">
+            <div class="tabs">
+                <button class="tab active" onclick="openTab(event, 'clock-tab')">
+                    <i class="fas fa-clock"></i> Jam & Alarm
+                </button>
+                <button class="tab" onclick="openTab(event, 'prayer-tab')">
+                    <i class="fas fa-pray"></i> Waktu Sholat
+                </button>
+                <button class="tab" onclick="openTab(event, 'ramadan-tab')">
+                    <i class="fas fa-star-and-crescent"></i> Kalender Ramadhan
+                </button>
+            </div>
+
+            <div id="clock-tab" class="tab-content active">
+                <div class="clock-container">
+                    <div class="analog-clock">
+                        <div id="hour" class="clock-hour"></div>
+                        <div id="minute" class="clock-minute"></div>
+                        <div id="second" class="clock-second"></div>
+                        <div class="clock-center"></div>
+                    </div>
+                    <div class="digital-clock">
+                        <div id="wib-time" class="digital-time">00:00:00 WIB</div>
+                    </div>
+                </div>
+
+                <div class="alarm-section">
+                    <h2><i class="fas fa-bell"></i> Pengaturan Alarm</h2>
+                    <div class="input-group">
+                        <label for="alarm-time">Waktu Alarm</label>
+                        <input type="time" id="alarm-time">
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="work-days">
+                        <label for="work-days">Hanya Hari Kerja</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="special-days">
+                        <label for="special-days">Hari Spesial</label>
+                    </div>
+                    <button id="set-alarm-button">Atur Alarm</button>
+                </div>
+
+                <div class="reminder-section">
+                    <h2><i class="fas fa-hourglass-half"></i>Interval</h2>
+                    <div class="input-group">
+                        <label for="minutes-select">Pengingat Setiap</label>
+                        <select id="minutes-select">
+                            <option value="1">1 menit</option>
+                            <option value="5">5 menit</option>
+                            <option value="10">10 menit</option>
+                            <option value="15">15 menit</option>
+                            <option value="30">30 menit</option>
+                            <option value="60">60 menit</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="multiplier-select">Jumlah Pengingat</label>
+                        <select id="multiplier-select">
+                            <option value="1">1 kali</option>
+                            <option value="2">2 kali</option>
+                            <option value="3">3 kali</option>
+                            <option value="4">4 kali</option>
+                            <option value="5">5 kali</option>
+                        </select>
+                    </div>
+                    <button id="set-reminder-button">Atur Pengingat</button>
+                </div>
+            </div>
+
+            <div id="prayer-tab" class="tab-content">
+                <h2><i class="fas fa-map-marker-alt"></i> Lokasi</h2>
+                <select id="location-select" class="location-select">
+                    <option value="jakarta">Jakarta</option>
+                    <option value="bandung">Bandung</option>
+                    <option value="surabaya">Surabaya</option>
+                    <option value="yogyakarta">Yogyakarta</option>
+                    <option value="makassar">Makassar</option>
+                </select>
+
+                <div class="prayer-times">
+                    <div class="prayer-card">
+                        <div class="prayer-name">Subuh</div>
+                        <div id="subuh-time" class="prayer-time">04:33</div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="subuh-toggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <span class="toggle-label">Adzan</span>
+                    </div>
+
+                    <div class="prayer-card">
+                        <div class="prayer-name">Dzuhur</div>
+                        <div id="dzuhur-time" class="prayer-time">11:51</div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="dzuhur-toggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <span class="toggle-label">Adzan</span>
+                    </div>
+
+                    <div class="prayer-card">
+                        <div class="prayer-name">Ashar</div>
+                        <div id="ashar-time" class="prayer-time">15:12</div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="ashar-toggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <span class="toggle-label">Adzan</span>
+                    </div>
+
+                    <div class="prayer-card">
+                        <div class="prayer-name">Maghrib</div>
+                        <div id="maghrib-time" class="prayer-time">17:57</div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="maghrib-toggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <span class="toggle-label">Adzan</span>
+                    </div>
+
+                    <div class="prayer-card">
+                        <div class="prayer-name">Isya</div>
+                        <div id="isya-time" class="prayer-time">19:06</div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="isya-toggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <span class="toggle-label">Adzan</span>
+                    </div>
+                </div>
+                
+                <div class="info-text">
+                    <i class="fas fa-info-circle"></i> Waktu sholat berdasarkan data lokasi yang dipilih. Pastikan lokasi Anda sudah benar.
+                </div>
+            </div>
+
+            <div id="ramadan-tab" class="tab-content">
+                <div class="ramadan-header">
+                    <div class="ramadan-title">Kalender Ramadhan 1446H</div>
+                    <button id="ramadan-toggle">Sembunyikan</button>
+                </div>
+
+                <div id="ramadan-calendar" class="ramadan-calendar">
+                    <div class="days-header">
+                        <div>Minggu</div>
+                        <div>Senin</div>
+                        <div>Selasa</div>
+                        <div>Rabu</div>
+                        <div>Kamis</div>
+                        <div>Jumat</div>
+                        <div>Sabtu</div>
+                    </div>
+                    <div id="ramadan-grid" class="ramadan-grid">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="alarm-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3"></audio>
+    <audio id="adzan-sound" src="https://ia804502.us.archive.org/4/items/AdzanMakkah/adzan%20makkah.mp3"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

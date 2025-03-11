@@ -22,6 +22,194 @@
     --toggle-bg: #cbd5e0;
     --toggle-active: #4299e1;
 }
+:root {
+    --hijri-event-color: #e53e3e;
+    --hijri-nav-hover: rgba(58, 123, 213, 0.1);
+}
+
+.dark-theme {
+    --hijri-event-color: #fc8181;
+    --hijri-nav-hover: rgba(49, 130, 206, 0.2);
+}
+
+
+.hijri-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.hijri-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.hijri-calendar {
+    margin-top: 20px;
+}
+
+.hijri-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.nav-button {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+    background-color: var(--hijri-nav-hover);
+    color: var(--primary-color);
+}
+
+.hijri-month-name {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.hijri-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    background-color: var(--ramadan-grid-bg);
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.hijri-day {
+    background-color: var(--ramadan-day-bg);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.hijri-day.empty {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.hijri-day:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.hijri-day.today {
+    background-color: var(--ramadan-today-bg);
+    color: var(--ramadan-today-color);
+    font-weight: 700;
+    box-shadow: 0 5px 15px rgba(58, 123, 213, 0.3);
+}
+
+.hijri-day-number {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.gregorian-date {
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+.hijri-event {
+    font-size: 10px;
+    color: var(--hijri-event-color);
+    margin-top: 5px;
+    font-weight: 500;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hijri-day.has-event {
+    border: 1px solid var(--hijri-event-color);
+}
+
+/* Responsive Styles for Hijri Calendar */
+@media (max-width: 768px) {
+    .hijri-title {
+        font-size: 18px;
+    }
+    
+    .hijri-month-name {
+        font-size: 16px;
+    }
+    
+    .hijri-grid {
+        gap: 5px;
+        padding: 10px;
+    }
+    
+    .hijri-day {
+        min-height: 60px;
+        padding: 5px;
+    }
+    
+    .hijri-day-number {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hijri-navigation {
+        margin-bottom: 10px;
+    }
+    
+    .nav-button {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .hijri-month-name {
+        font-size: 14px;
+    }
+    
+    .hijri-grid {
+        gap: 2px;
+        padding: 5px;
+    }
+    
+    .hijri-day {
+        min-height: 50px;
+        padding: 2px;
+    }
+    
+    .hijri-day-number {
+        font-size: 14px;
+        margin-bottom: 2px;
+    }
+    
+    .gregorian-date {
+        font-size: 9px;
+    }
+    
+    .hijri-event {
+        font-size: 8px;
+    }
+}
 
 .dark-theme {
     --primary-color: #3182ce;
@@ -44,7 +232,7 @@
     --hand-hour: #cbd5e0;
     --hand-minute: #e2e8f0;
     --hand-second: #f56565;
-    --toggle-bg: #4a5568;
+    --toggle-bg: #5c7eb9;
     --toggle-active: #63b3ed;
 }
 
@@ -127,7 +315,53 @@ header {
 .tabs::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
 }
+/* Styling for today's date - blue highlight */
+.hijri-day.today {
+    background-color: #1e88e5;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+    transition: all 0.2s ease;
+}
 
+.hijri-day.today .hijri-day-number {
+    font-weight: bold;
+}
+
+.hijri-day.today .gregorian-date {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Styling for special days in Hijri calendar */
+.hijri-day.special-day {
+    background-color: #ffebee;
+    border: 1px solid #ffcdd2;
+    border-radius: 5px;
+    position: relative;
+}
+
+.hijri-day.special-day::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 8px;
+    height: 8px;
+    background-color: #e53935;
+    border-radius: 50%;
+}
+
+.hijri-day.special-day .hijri-event {
+    color: #c62828;
+    font-size: 0.75rem;
+    margin-top: 3px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 500;
+}
 .tab {
     padding: 15px 25px;
     cursor: pointer;
@@ -578,7 +812,7 @@ input:checked + .toggle-slider:before {
     }
 }
 
-/* Even smaller screens */
+
 @media (max-width: 480px) {
     .container {
         padding: 8px;
@@ -612,7 +846,7 @@ input:checked + .toggle-slider:before {
         font-size: 28px;
     }
     
-    /* Make Ramadan calendar more compact */
+  
     .days-header {
         gap: 2px;
     }
@@ -640,12 +874,12 @@ input:checked + .toggle-slider:before {
         font-size: 9px;
     }
     
-    /* Adjust form elements */
+
     input, select, button {
         padding: 10px;
     }
     
-    /* Make prayer cards more compact */
+
     .prayer-card {
         padding: 15px 10px;
     }

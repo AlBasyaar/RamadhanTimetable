@@ -159,14 +159,20 @@
             </div>
 
             <div id="ramadan-tab" class="tab-content">
-                <div class="ramadan-header">
-                    <div class="ramadan-title">Kalender Ramadhan 1446H</div>
-                    <button id="ramadan-toggle">Sembunyikan</button>
+                <div class="hijri-header">
+                    <div class="hijri-title">Kalender Hijriah</div>
+                    <button id="hijri-toggle">Sembunyikan</button>
                 </div>
-
-                <div id="ramadan-calendar" class="ramadan-calendar">
+            
+                <div id="hijri-calendar" class="hijri-calendar">
+                    <div class="hijri-navigation">
+                        <button id="prev-month" class="nav-button"><i class="fas fa-chevron-left"></i></button>
+                        <div id="hijri-month-name" class="hijri-month-name">Memuat...</div>
+                        <button id="next-month" class="nav-button"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    
                     <div class="days-header">
-                        <div>Minggu</div>
+                        <div>Ahad</div>
                         <div>Senin</div>
                         <div>Selasa</div>
                         <div>Rabu</div>
@@ -174,9 +180,13 @@
                         <div>Jumat</div>
                         <div>Sabtu</div>
                     </div>
-                    <div id="ramadan-grid" class="ramadan-grid">
-                        
+                    <div id="hijri-grid" class="hijri-grid">
+                    
                     </div>
+                </div>
+                
+                <div class="info-text">
+                    <i class="fas fa-info-circle"></i> Data kalender Hijriah berdasarkan API myQuran. Geser untuk melihat bulan lainnya.
                 </div>
             </div>
         </div>

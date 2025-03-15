@@ -1027,9 +1027,9 @@ function runClock() {
     }
 }
 
-// Run the clock every second
+
 setInterval(runClock, 1000);
 
-// Start the clock immediately
+
 runClock();
 
